@@ -29,7 +29,7 @@ app.use("/new/:which",function(req,res){
       var shortUrl=req.headers["x-forwarded-host"]+("/")+randomNum.toString()
       var result;
       // Variables in Mongo
-      if(/http(s?)\:\/\/(w{3})/gi.test(longUrl)){
+      if(/(http(s?))\:\/\//gi.test(longUrl)){
         result="true"
       } else {
         result="false"
