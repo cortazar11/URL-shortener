@@ -24,7 +24,8 @@ app.get("/", function (request, response) {
 
 
 app.use("/new/:which",function(req,res){
-  
+    if(err) throw err
+    console.log(req)
       //res.end("Nueva URL: "+req.params.which)
   })
 
