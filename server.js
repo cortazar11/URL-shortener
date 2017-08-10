@@ -20,7 +20,9 @@ app.get("/", function (request, response) {
 
 // MY CODE
 // Math.round(Math.random()*10000)
-app.get(,)
+app.use("/new/:which",function(req,res){
+      res.end("Nueva URL: "+req.params.which)
+  })
 
 
 
