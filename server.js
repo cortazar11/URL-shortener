@@ -36,7 +36,7 @@ app.use("/new/:which",function(req,res){
       
       // Variables in Mongo
       var longUrl=req.params.which
-      console.log(longUrl)
+      
       var randomNum=Math.round(Math.random()*10000)
       var shortUrl=req.headers["x-forwarded-host"]+("/")+randomNum.toString()
       var result;
