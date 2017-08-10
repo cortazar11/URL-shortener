@@ -21,17 +21,17 @@ app.get("/", function (request, response) {
 // MY CODE
 // Math.round(Math.random()*10000)
 // Regex: /(http(s?))\:\/\//gi.test(string)
-var longUrl;
-var shortUrl;
+
 
 
 
 app.use("/new/:which",function(req,res){
       // Variables in Mongo
+      var longUrl
       if(/(http(s?))\:\/\//gi.test(req.params.which)){
-        longUrl=req.params.which
+        var longUrl=req.params.which
       }
-      shortUrl=Math.round(Math.random()*10000)
+      var shortUrl=Math.round(Math.random()*10000)
       
       var myJSON={
           "original_url":longUrl,
