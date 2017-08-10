@@ -28,7 +28,9 @@ var shortUrl;
 
 app.use("/new/:which",function(req,res){
       // Variables in Mongo
-      longUrl=req.params.which
+      if(/(http(s?))\:\/\//gi.test(req.params.which)){
+        longUrl=req.params.which
+      }
       shortUrl=Math.round(Math.random()*10000)
       
       var myJSON={
@@ -37,7 +39,7 @@ app.use("/new/:which",function(req,res){
       }
     
       res.end(JSON.stringify(myJSON))
-     //res.end("Your Url"+req.params.which)
+     //res.end("Your Url: "+ typeof req.params.which)
   
       
   })
