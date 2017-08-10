@@ -30,11 +30,11 @@ app.use("/new/:which",function(req,res){
       yourUrl=Math.round(Math.random()*10000)
       //res.end(JSON.stringify(req.headers))
       var myJSON={
-          "original_url":JSON.stringify(req.headers["x-forwarded-host"]),
-          "short"
+          "original_url":req.headers["x-forwarded-host"],
+          "short_url": req.headers["x-forwarded-host"]+("/")+yourUrl.toString()
       }
     
-      res.end("Your url now:"+JSON.stringify(req.headers["x-forwarded-host"])+("/")+yourUrl.toString())
+      res.end(JSON.stringify(myJSON))
      //res.end("Your Url"+req.params.which)
   
       
