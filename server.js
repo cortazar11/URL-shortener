@@ -21,12 +21,10 @@ app.get("/", function (request, response) {
 // MY CODE
 // Math.round(Math.random()*10000)
 // Regex: /(http(s?))\:\/\//gi.test(string)
-var url=
+
 
 app.use("/new/:which",function(req,res){
-  if(/(http(s?))\:\/\//gi.test(which)){
-    co
-  }
+  
       //res.end("Nueva URL: "+req.params.which)
   })
 
