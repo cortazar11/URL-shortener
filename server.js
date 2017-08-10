@@ -24,9 +24,11 @@ app.get("/", function (request, response) {
 
 
 app.use("/new/:which",function(req,res){
-    if(err) throw err
-    console.log(req)
-      //res.end("Nueva URL: "+req.params.which)
+      var yourUrl=req.params.which
+      yourUrl=Math.round(Math.random()*10000)
+      res.end(""yourUrl)
+     //res.end("Your Url"+req.params.which)
+      
   })
 
 
