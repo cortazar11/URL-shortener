@@ -23,11 +23,18 @@ app.get("/", function (request, response) {
 // Regex: /(http(s?))\:\/\//gi.test(string)
 
 
+
+
 app.use("/new/:which",function(req,res){
       var yourUrl=req.params.which
       yourUrl=Math.round(Math.random()*10000)
       //res.end(JSON.stringify(req.headers))
-      res.end("Your url now:"+JSON.stringify(req.headers["x-forwarded-host"])+("/")+yourUrl)
+      var myJSON={
+          "original_url":JSON.stringify(req.headers["x-forwarded-host"]),
+          "short"
+      }
+    
+      res.end("Your url now:"+JSON.stringify(req.headers["x-forwarded-host"])+("/")+yourUrl.toString())
      //res.end("Your Url"+req.params.which)
   
       
