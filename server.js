@@ -36,9 +36,11 @@ app.use("/new/:which",function(req,res){
       // Variables in Mongo
       var longUrl=req.params.which
       var shortUrl=Math.round(Math.random()*10000)
-      var myJSON;
+      var result;
       
-      
+      if( /(http(s?))\:\/\//gi.test(string)){
+        
+}
       
       
     
