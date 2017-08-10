@@ -21,22 +21,26 @@ app.get("/", function (request, response) {
 // MY CODE
 // Math.round(Math.random()*10000)
 // Regex: /(http(s?))\:\/\//gi.test(string)
-
+function myJSON(){
+  return {
+    
+          "original_url":longUrl,
+          "short_url": req.headers["x-forwarded-host"]+("/")+shortUrl.toString()
+            
+  }
+}
 
 
 
 app.use("/new/:which",function(req,res){
       // Variables in Mongo
-      var longUrl
-      if(/(http(s?))\:\/\//gi.test(req.params.which)){
-        var longUrl=req.params.which
-      }
+      var longUrl=req.params.which
       var shortUrl=Math.round(Math.random()*10000)
+      var myJSON;
       
-      var myJSON={
-          "original_url":longUrl,
-          "short_url": req.headers["x-forwarded-host"]+("/")+shortUrl.toString()
-      }
+      
+      
+      
     
       res.end(JSON.stringify(myJSON))
      //res.end("Your Url: "+ typeof req.params.which)
