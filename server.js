@@ -26,12 +26,13 @@ app.get("/", function (request, response) {
 
 
 app.use("/new/:which",function(req,res){
-      var yourUrl=req.params.which
-      yourUrl=Math.round(Math.random()*10000)
-      //res.end(JSON.stringify(req.headers))
+      // Variables in Mongo
+      var longUrl=req.params.which
+      var shortUrl=Math.round(Math.random()*10000)
+      
       var myJSON={
-          "original_url":req.headers["x-forwarded-host"],
-          "short_url": req.headers["x-forwarded-host"]+("/")+yourUrl.toString()
+          "original_url":longUrl,
+          "short_url": req.headers["x-forwarded-host"]+("/")+shortUrl.toString()
       }
     
       res.end(JSON.stringify(myJSON))
