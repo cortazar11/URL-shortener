@@ -10,6 +10,7 @@ MongoClient.connect(MONGODB_URI,function(err,db){
     console.log('Connection established to', MONGODB_URI);
   }
   
+  var collection=db.collection()
 
 
 })
