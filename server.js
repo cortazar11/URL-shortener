@@ -42,9 +42,9 @@ app.use("/new/:which",function(req,res){
       }
       
       
-      res.writeHead(200,{"Content-Type":"application/json"})
-      res.end(JSON.stringify(result))
-      
+      //res.writeHead(200,{"Content-Type":"application/json"})
+      //res.end(JSON.stringify(result))
+      res.end(req.params.which)
     
       //res.end(JSON.stringify(myJSON))
      
