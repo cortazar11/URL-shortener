@@ -33,18 +33,18 @@ app.use("/new/:which",function(req,res){
       var randomNum=Math.round(Math.random()*10000)
       var longUrl=req.params.which;
       var shortUrl=req.headers["x-forwarded-host"]+("/")+randomNum.toString()
-      var result;
+      var result=myJSON(longUrl,shortUrl);
       // Variables in Mongo
-      if(/(http(s?))(\:)/.test(longUrl)){
-        result=myJSON(longUrl,shortUrl)
-      } else {
-        result= {"error":"Wrong url format, make sure you have a valid protocol and real site."}
-      }
+      //if(/(http(s?))(\:)/.test(longUrl)){
+      
+      //} else {
+       // result= {"error":"Wrong url format, make sure you have a valid protocol and real site."}
+     // }
       
       
-      //res.writeHead(200,{"Content-Type":"application/json"})
+      res.writeHead(200,{"Content-Type":"application/json"})
       //res.end(JSON.stringify(result))
-      res.end(req.params.which)
+      res.end(result)
     
       //res.end(JSON.stringify(myJSON))
      
