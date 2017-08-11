@@ -21,6 +21,12 @@ app.get("/", function (request, response) {
 // MY CODE
 // Math.round(Math.random()*10000)
 // Regex: /(http(s?))\:\/\//gi.test(string)
+function myJSON(longUrl,shortUrl){
+  return {
+          "original_url":longUrl,
+          "short_url": shortUrl
+  }
+}
 
 
 app.use("/new/:which",function(req,res){
@@ -30,20 +36,18 @@ app.use("/new/:which",function(req,res){
       var result;
       // Variables in Mongo
       if(/(http(s?))(\:)/.test(longUrl)){
-        result="true"
+        result=myJSON(longUrl,shortUrl)
       } else {
-        result="false"
+        result= {"error":"Wrong url format, make sure you have a valid protocol and real site."}
       }
       
       
+      res.writeHead(200,{"Content-Type":"application/json"})
+      res.end(JSON.stringify(result))
       
-      var myJSON={
-          "original_url":longUrl,
-          "short_url": req.headers["x-forwarded-host"]+("/")+shortUrl.toString()
-      }
     
       //res.end(JSON.stringify(myJSON))
-     res.end(result)
+     
   
       
   })
