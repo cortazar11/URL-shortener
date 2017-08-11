@@ -31,8 +31,8 @@ app.get("/", function (request, response) {
 
 
 app.get("new/:which",function(req,res){
-      var longUrl=req.params.which
-      res.end("Your url: "+JSON.stringify({longUrl}))
+      //var longUrl=req.params.which
+      res.end("Your url: "+req.params.which)
       /**
       var randomNum=Math.round(Math.random()*10000)
       var shortUrl=req.headers["x-forwarded-host"]+("/")+randomNum.toString()
