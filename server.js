@@ -30,37 +30,35 @@ app.get("/", function (request, response) {
 
 
 
-var doc=function(longUrl,shortUrl){
-        return{
-             "original_url":longUrl,
-            "short_url": shortUrl
-          }
-  }
-
-app.get("new/:which",function(req,res){
+app.use("new/:which",function(req,res){
       var longUrl=req.params.which
       var randomNum=Math.round(Math.random()*10000)
       var shortUrl=req.headers["x-forwarded-host"]+("/")+randomNum.toString()
-  
-      res.end(JSON.stringify(doc(longUrl,shortUrl)))
-  
+      
+
       MongoClient.connect(MONGODB_URI,function(err,db){
-      if (err) {
-        console.log('Unable to connect to the mongoDB server. Error:', err);
-      } else {
-        console.log('Connection established to', MONGODB_URI);
-      }
+        if (err) {
+          console.log('Unable to connect to the mongoDB server. Error:', err);
+        } else {
+          console.log('Connection established to', MONGODB_URI);
+        }
 
-      var collection=db.collection("url")
-      collection.insert(doc(longUrl,shortUrl),function(){
-            if(err) throw err
-            console.log(JSON.stringify(doc(longUrl,shortUrl)))
-            db.close()
-        })
+        var collection=db.collection("url")
+        
+        var doc={
+          "original_url":longUrl,
+          "short_url":shortUrl
+        }
+        collection.insert(doc,function(){
+              if(err) throw err
+              console.log(JSON.stringify(doc))
+              db.close()
+          })
 
-
-    })
-
+        res.end(JSON.stringify(doc))
+      })
+  
+      
 })
 
 
