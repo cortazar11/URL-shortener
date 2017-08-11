@@ -5,11 +5,12 @@
 var express = require('express');
 var app = express();
 
-// Mongo files
+/*Mongo files
 var mongodb=require("mongodb")
 var MongoClient = mongodb.MongoClient;
 
 var MONGODB_URI ="mongodb://cortazar11:lasarte@ds141358.mlab.com:41358/freecodecamp"
+*/
 
 // we've started you off with Express, 
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
@@ -17,10 +18,10 @@ var MONGODB_URI ="mongodb://cortazar11:lasarte@ds141358.mlab.com:41358/freecodec
 //http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
 
-// http://expressjs.com/en/starter/basic-routing.html
+/*http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
-});
+});*/
 
 
 
@@ -30,9 +31,9 @@ app.get("/", function (request, response) {
 
 
 
-app.get("new/:which",function(req,res){
-      //var longUrl=req.params.which
-      res.end("Your url: "+req.params.which)
+app.get("/new/:which",function(req,res){
+      var longUrl=req.params.which
+      res.end("Hello, " + req.params.which + ".");
       /**
       var randomNum=Math.round(Math.random()*10000)
       var shortUrl=req.headers["x-forwarded-host"]+("/")+randomNum.toString()
