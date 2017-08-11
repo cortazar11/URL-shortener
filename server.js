@@ -32,8 +32,7 @@ app.get("/", function (request, response) {
 
 app.get("new/:which",function(req,res){
       var longUrl=req.params.which
-      console.log(longUrl)
-      res.end("Your url: "+JSON.stringify(longUrl))
+      res.end("Your url: "+JSON.stringify({longUrl}))
       /**
       var randomNum=Math.round(Math.random()*10000)
       var shortUrl=req.headers["x-forwarded-host"]+("/")+randomNum.toString()
@@ -68,6 +67,6 @@ app.get("new/:which",function(req,res){
 
 
 //listen for requests :)
-/*var listener = app.listen(process.env.PORT, function () {
+var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
-});*/
+});
