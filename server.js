@@ -43,7 +43,7 @@ app.get("/", function (request, response) {
           console.log('Connection established to', MONGODB_URI);
         }
         
-        app.get("/new/:which",function(req,res){
+        app.use("/new/:which",function(req,res){
           
             var longUrl=req.params.which
             var randomNum=Math.round(Math.random()*1000)
@@ -51,7 +51,7 @@ app.get("/", function (request, response) {
             //res.end({"original_url":longUrl,"short_url":shortUrl});
           //var url=db.collection("url")
             db.collection("url").insertOne({"original_url":longUrl,"short_url":shortUrl})
-               //console.log("Good , inserted"})
+               res.send({"original_url":longUrl,"short_url":shortUrl})
         
         
         
@@ -59,9 +59,9 @@ app.get("/", function (request, response) {
         
       })
         
-          /*var listener = app.listen(process.env.PORT, function () {
+          var listener = app.listen(process.env.PORT, function () {
                 console.log('Your app is listening on port ' + listener.address().port);
-              });*/
+              });
         
       })
   
