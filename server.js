@@ -5,12 +5,12 @@
 var express = require('express');
 var app = express();
 
-/*Mongo files
+//Mongo dependecies
 var mongodb=require("mongodb")
 var MongoClient = mongodb.MongoClient;
 
 var MONGODB_URI ="mongodb://cortazar11:lasarte@ds141358.mlab.com:41358/freecodecamp"
-*/
+
 
 // we've started you off with Express, 
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
@@ -29,15 +29,10 @@ app.get("/", function (request, response) {
 // Math.round(Math.random()*10000)
 // Regex: /(http(s?))\:\/\//gi.test(string)
 
-
-
-app.get("/new/:which",function(req,res){
-      var longUrl=req.params.which
-      res.end("Hello, " + req.params.which + ".");
-      /**
+ /**
       var randomNum=Math.round(Math.random()*10000)
       var shortUrl=req.headers["x-forwarded-host"]+("/")+randomNum.toString()
-      
+  */    
 
       MongoClient.connect(MONGODB_URI,function(err,db){
         if (err) {
@@ -45,6 +40,14 @@ app.get("/new/:which",function(req,res){
         } else {
           console.log('Connection established to', MONGODB_URI);
         }
+        
+        app.get("/new/:which",function(req,res){
+            var longUrl=req.params.which
+            var randonNum=Math.round(Math.random()*1000)
+            var shortUrl=
+            res.end("Hello, " + req.params.which + ".");
+     
+          })
 
         var collection=db.collection("url")
         
@@ -60,9 +63,11 @@ app.get("/new/:which",function(req,res){
 
         res.end(JSON.stringify(doc))
       })
-  ***/
-      
-})
+  
+
+
+
+
 
 
 
