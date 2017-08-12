@@ -44,13 +44,13 @@ app.get("/", function (request, response) {
         }
         
         app.get("/new/:which",function(req,res){
-          /**
+          
             var longUrl=req.params.which
             var randomNum=Math.round(Math.random()*1000)
             var shortUrl=req.headers["x-forwarded-host"]+"/"+randomNum
-            res.end({"original_url":longUrl,"short_url":shortUrl});**/
+            //res.end({"original_url":longUrl,"short_url":shortUrl});
           var url=db.collection("url")
-          url.insertOne()
+          url.insertOne({"original_url":longUrl,"short_url":shortUrl})
      
           })
 
@@ -66,6 +66,6 @@ app.get("/", function (request, response) {
 
 
 //listen for requests :)
-var listener = app.listen(process.env.PORT, function () {
+/*var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
-});
+});*/
