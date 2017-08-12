@@ -18,10 +18,12 @@ var MONGODB_URI ="mongodb://cortazar11:lasarte@ds141358.mlab.com:41358/freecodec
 //http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
 
-/*http://expressjs.com/en/starter/basic-routing.html
+
+
+//http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
-});*/
+});
 
 
 
@@ -41,12 +43,14 @@ app.get("/", function (request, response) {
           console.log('Connection established to', MONGODB_URI);
         }
         
-        app.use("/new/:which",function(req,res){
+        app.get("/new/:which",function(req,res){
+          /**
             var longUrl=req.params.which
             var randomNum=Math.round(Math.random()*1000)
             var shortUrl=req.headers["x-forwarded-host"]+"/"+randomNum
-            
-            res.end({"original_url":longUrl,"short_url":shortUrl});
+            res.end({"original_url":longUrl,"short_url":shortUrl});**/
+          var url=db.collection("url")
+          url.insertOne()
      
           })
 
