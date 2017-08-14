@@ -48,7 +48,7 @@ app.get("/", function (request, response) {
             var longUrl=req.path.substring(1)
             //res.send(longUrl)
             var randomNum=Math.round(Math.random()*1000)
-            var shortUrl="https//"+req.headers["x-forwarded-host"]+"/"+randomNum
+            var shortUrl="https://"+req.headers["x-forwarded-host"]+"/"+randomNum
             /*
             if(/^\/(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(longUrl)){
               
@@ -71,10 +71,10 @@ app.get("/", function (request, response) {
         
         app.use("/:number",function(req,res){
           var shortUrl="https://"+req.headers["x-forwarded-host"]+"/"+req.params.number
-          
+          res.send(req.headers["x-forwarded-host"])
           db.collection("url").find({"short_url":shortUrl},{"original_url":1,"_id":0}).toArray(function(err,docs){
             if(err) throw err
-            return res.
+            //return res.json(docs)
             docs.map(function(item){
               var result=res.redirect(item.original_url)
               return result
