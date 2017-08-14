@@ -43,11 +43,19 @@ app.get("/", function (request, response) {
           console.log('Connection established to', MONGODB_URI);
         }
         
-        app.use("/new/http(s)?://:which",function(req,res){
+        app.use("/new",function(req,res){
           
-            var longUrl="http://"+req.params.which
+            var longUrl=req.path
             var randomNum=Math.round(Math.random()*1000)
-            var shortUrl="http://"+req.headers["x-forwarded-host"]+"/"+randomNum
+            var shortUrl="http(s)?://"+req.headers["x-forwarded-host"]+"/"+randomNum
+            /*
+            if(/^\/(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(longUrl)){
+              
+            } else {
+              res.send({"error":"Wrong url format, make sure you have a valid protocol and real site."})
+            }
+            */
+            
             //res.end({"original_url":longUrl,"short_url":shortUrl});
           //var url=db.collection("url")
             db.collection("url").insertOne({"original_url":longUrl,"short_url":shortUrl})
