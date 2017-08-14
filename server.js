@@ -1,4 +1,4 @@
-// server.js
+ // server.js
 // where your node app starts
 
 // init project
@@ -59,9 +59,23 @@ app.get("/", function (request, response) {
         
       })
         
+        app.use("/:number",function(req,res){
+          var shortUrl="http://"+req.headers["x-forwarded-host"]+"/"+req.params.number
+          
+          db.collection("url").find({"short_url":shortUrl},{"original_url":1,"_id":0}).toArray(function(err,docs){
+            if(err) throw err
+            return res.json(docs)
+            db.close()
+          })
+          
+          
+         
+        })
+        
           var listener = app.listen(process.env.PORT, function () {
                 console.log('Your app is listening on port ' + listener.address().port);
               });
         
       })
   
+        
