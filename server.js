@@ -46,6 +46,7 @@ app.get("/", function (request, response) {
         app.use("/new",function(req,res){
           
             var longUrl=req.path.substring(1)
+            //res.send(longUrl)
             var randomNum=Math.round(Math.random()*1000)
             var shortUrl="https//"+req.headers["x-forwarded-host"]+"/"+randomNum
             /*
@@ -58,8 +59,9 @@ app.get("/", function (request, response) {
             
             //res.end({"original_url":longUrl,"short_url":shortUrl});
           //var url=db.collection("url")
+            res.send({"original_url":longUrl,"short_url":shortUrl})
             db.collection("url").insertOne({"original_url":longUrl,"short_url":shortUrl})
-               res.send({"original_url":longUrl,"short_url":shortUrl})
+               
         
         
         
@@ -72,7 +74,7 @@ app.get("/", function (request, response) {
           
           db.collection("url").find({"short_url":shortUrl},{"original_url":1,"_id":0}).toArray(function(err,docs){
             if(err) throw err
-            
+            return res.
             docs.map(function(item){
               var result=res.redirect(item.original_url)
               return result
