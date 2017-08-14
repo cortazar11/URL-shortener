@@ -45,7 +45,7 @@ app.get("/", function (request, response) {
         
         app.use("/new",function(req,res){
           
-            var longUrl=req.path
+            var longUrl=req.path.substring(1)
             var randomNum=Math.round(Math.random()*1000)
             var shortUrl="https//"+req.headers["x-forwarded-host"]+"/"+randomNum
             /*
