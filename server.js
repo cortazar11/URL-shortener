@@ -1,4 +1,4 @@
- // server.js
+// server.js
 // where your node app starts
 
 // init project
@@ -43,7 +43,7 @@ app.get("/", function (request, response) {
           console.log('Connection established to', MONGODB_URI);
         }
         
-        app.use("/new/http://:which",function(req,res){
+        app.use("/new/http(s)?://:which",function(req,res){
           
             var longUrl="http://"+req.params.which
             var randomNum=Math.round(Math.random()*1000)
@@ -64,8 +64,13 @@ app.get("/", function (request, response) {
           
           db.collection("url").find({"short_url":shortUrl},{"original_url":1,"_id":0}).toArray(function(err,docs){
             if(err) throw err
-            return res.json(docs)
-            db.close()
+            
+            docs.map(function(item){
+              var result=res.redirect(item.original_url)
+              return result
+            })
+            //return res.json(docs)
+            //db.close()
           })
           
           
