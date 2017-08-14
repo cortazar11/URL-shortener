@@ -43,11 +43,11 @@ app.get("/", function (request, response) {
           console.log('Connection established to', MONGODB_URI);
         }
         
-        app.use("/new/:which",function(req,res){
+        app.use("/new/http://:which",function(req,res){
           
-            var longUrl=req.params.which
+            var longUrl="http://"+req.params.which
             var randomNum=Math.round(Math.random()*1000)
-            var shortUrl=req.headers["x-forwarded-host"]+"/"+randomNum
+            var shortUrl="http://"+req.headers["x-forwarded-host"]+"/"+randomNum
             //res.end({"original_url":longUrl,"short_url":shortUrl});
           //var url=db.collection("url")
             db.collection("url").insertOne({"original_url":longUrl,"short_url":shortUrl})
@@ -65,4 +65,3 @@ app.get("/", function (request, response) {
         
       })
   
-        
