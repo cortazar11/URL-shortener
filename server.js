@@ -9,7 +9,7 @@ var app = express();
 var mongodb=require("mongodb")
 var MongoClient = mongodb.MongoClient;
 
-var MONGODB_URI ="mongodb://cortazar11:lasarte@ds141358.mlab.com:41358/freecodecamp"
+var MONGODB_URI ="mongodb://cortazar11:XXXXXXXX@ds141358.mlab.com:41358/freecodecamp"
 
 
 
