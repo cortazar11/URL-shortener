@@ -6,7 +6,7 @@ User Stories:<br/>
 
 Example creation usage:
 
-https://attractive-gun.glitch.me/new/https://www.google.es
+https://attractive-gun.glitch.me/new/https://www.google.es<br/>
 https://attractive-gun.glitch.me/new/https://www.theguardian.com/international
 
 Example creation output:<br/>
