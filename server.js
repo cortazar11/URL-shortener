@@ -46,20 +46,20 @@ app.get("/", function (request, response) {
         app.use("/new",function(req,res){
           
             var longUrl=req.path.substring(1)
-            //res.send(longUrl)
+            res.send({"original_url":longUrl,"short_url":shortUrl})
             var randomNum=Math.round(Math.random()*1000)
             var shortUrl="https://"+req.headers["x-forwarded-host"]+"/"+randomNum
-            /*
-            if(/^\/(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(longUrl)){
-              
+            
+            if(/(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,})/.test(longUrl)){
+              res.send({"original_url":longUrl,"short_url":shortUrl})
             } else {
               res.send({"error":"Wrong url format, make sure you have a valid protocol and real site."})
             }
-            */
+            
             
             //res.end({"original_url":longUrl,"short_url":shortUrl});
           //var url=db.collection("url")
-            res.send({"original_url":longUrl,"short_url":shortUrl})
+            
             db.collection("url").insertOne({"original_url":longUrl,"short_url":shortUrl})
                
         
