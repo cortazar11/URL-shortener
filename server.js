@@ -50,8 +50,9 @@ app.get("/", function (request, response) {
             var randomNum=Math.round(Math.random()*1000)
             var shortUrl="https://"+req.headers["x-forwarded-host"]+"/"+randomNum
             
-            if(/^((http[s]?|ftp):\/)?\/?([^:\/\s]+)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?$/.test(longUrl)){
+            if(/[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/ig.test(longUrl)){
               res.send({"original_url":longUrl,"short_url":shortUrl})
+              db.collection("url").insertOne({"original_url":longUrl,"short_url":shortUrl})
             } else {
               res.send({"error":"Wrong url format, make sure you have a valid protocol and real site."})
             }
@@ -60,7 +61,7 @@ app.get("/", function (request, response) {
             //res.end({"original_url":longUrl,"short_url":shortUrl});
           //var url=db.collection("url")
             
-            db.collection("url").insertOne({"original_url":longUrl,"short_url":shortUrl})
+            
                
         
         
@@ -74,11 +75,12 @@ app.get("/", function (request, response) {
           res.send(req.headers["x-forwarded-host"])
           db.collection("url").find({"short_url":shortUrl},{"original_url":1,"_id":0}).toArray(function(err,docs){
             if(err) throw err
-            //return res.json(docs)
+            return res.json(docs)
+            /*
             docs.map(function(item){
               var result=res.redirect(item.original_url)
               return result
-            })
+            })*/
             //return res.json(docs)
             //db.close()
           })
