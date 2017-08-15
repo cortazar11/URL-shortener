@@ -9,15 +9,15 @@ Example creation usage:
 https://attractive-gun.glitch.me/new/https://www.google.es
 https://attractive-gun.glitch.me/new/https://www.theguardian.com/international
 
-Example creation output:
+Example creation output:<br/>
 
 {"original_url":"https://www.theguardian.com/international","short_url":"https://attractive-gun.glitch.me/755"}
 
-Usage:
+Usage:<br/>
 
 attractive-gun.glitch.me/755
 
-Will redirect to:
+Will redirect to:<br/>
 
 https://www.theguardian.com/international
 
