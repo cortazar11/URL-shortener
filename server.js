@@ -12,29 +12,18 @@ var MongoClient = mongodb.MongoClient;
 var MONGODB_URI ="mongodb://cortazar11:lasarte@ds141358.mlab.com:41358/freecodecamp"
 
 
-// we've started you off with Express, 
-// but feel free to use whatever libs or frameworks you'd like through `package.json`.
 
-//http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
 
 
 
-//http://expressjs.com/en/starter/basic-routing.html
+
 app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 
 
 
-// MY CODE
-// Math.round(Math.random()*10000)
-// Regex: /(http(s?))\:\/\//gi.test(string)
-
- /**
-      var randomNum=Math.round(Math.random()*10000)
-      var shortUrl=req.headers["x-forwarded-host"]+("/")+randomNum.toString()
-  */    
 
       MongoClient.connect(MONGODB_URI,function(err,db){
         if (err) {
