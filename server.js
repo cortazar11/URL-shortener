@@ -58,9 +58,6 @@ app.get("/", function (request, response) {
             }
             
             
-            //res.end({"original_url":longUrl,"short_url":shortUrl});
-          //var url=db.collection("url")
-            
             
                
         
@@ -72,17 +69,15 @@ app.get("/", function (request, response) {
         
         app.use("/:number",function(req,res){
           var shortUrl="https://"+req.headers["x-forwarded-host"]+"/"+req.params.number
-          res.send(req.headers["x-forwarded-host"])
+          
           db.collection("url").find({"short_url":shortUrl},{"original_url":1,"_id":0}).toArray(function(err,docs){
             if(err) throw err
-            return res.json(docs)
-            /*
+            //res.json(docs)
             docs.map(function(item){
               var result=res.redirect(item.original_url)
               return result
-            })*/
-            //return res.json(docs)
-            //db.close()
+            })
+            
           })
           
           
